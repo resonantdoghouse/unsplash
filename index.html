@@ -17,24 +17,37 @@
       <header>
         <h1>Unsplash Images</h1>
         <nav class="controls">
-          <span>
-            <label for="img-index">image index</label>
-            <input id="img-index" value="350" type="number" min="0" max="700" />
-            <label for="img-width">width</label>
-            <input id="img-width" type="number" value="300" />
-            <label for="img-height">height</label>
-            <input id="img-height" type="number" value="300" />
-          </span>
-          <span>
-            <label for="num-images">number of images</label>
-            <input id="num-images" type="number" value="8" min="1" max="80" />
-            <button id="ajax-btn" class="ajax-btn">Load Images</button>
-          </span>
+          <form>
+            <div class="form-control-group">
+              <label for="img-index">image index</label>
+              <input
+                id="img-index"
+                value="350"
+                type="number"
+                min="0"
+                max="700"
+              />
+              <label for="img-width">width</label>
+              <input id="img-width" type="number" value="300" />
+              <label for="img-height">height</label>
+              <input id="img-height" type="number" value="300" />
+            </div>
+
+            <div class="form-control-group">
+              <label for="num-images">number of images</label>
+              <input id="num-images" type="number" value="8" min="1" max="80" />
+              <label for="greyscale">greyscale</label>
+              <input type="checkbox" id="greyscale">
+              <label for="blur">blur</label>
+              <input type="range" id="blur" min="0" max="10" value="0">
+              <button id="ajax-btn" class="ajax-btn">Load Images</button>
+            </div>
+          </form>
         </nav>
       </header>
 
       <main>
-        <div id="ajax-content" class="ajax-content"></div>
+        <div id="unsplash-images" class="unsplash-images"></div>
       </main>
     </div>
 

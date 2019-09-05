@@ -1,7 +1,11 @@
 // preload loader gif
-$("body").append(
-  '<img id="preload" style="display:none;" src="img/loader.gif">'
-);
+$("body").append('<img id="preload" class="preload-img" src="img/loader.gif">');
+
+// preloader gif
+const $preloadImg = $("#preload");
+const $unsplashImages = $("#unsplash-images");
+const $greyScaleInput = $("#greyscale");
+const $blurInput = $("#blur");
 
 $("#ajax-btn").on("click", function(event) {
   event.preventDefault();
@@ -12,38 +16,63 @@ $("#ajax-btn").on("click", function(event) {
  * Load images
  */
 function loadImages() {
-  $("#ajax-content").empty();
+  $unsplashImages.empty();
 
-  var numImages = $("#num-images").val();
+  $preloadImg.css({
+    display: "block"
+  });
+
+  let queryString = "";
+
+  let numImages = $("#num-images").val();
   numImages = parseInt(numImages);
-  var imgIndex = $("#img-index").val();
+
+  let imgIndex = $("#img-index").val();
   imgIndex = parseInt(imgIndex);
-  var imgOffset = numImages + imgIndex;
 
-  var imgWidth = $("#img-width").val();
-  var imgHeight = $("#img-height").val();
+  const imgOffset = numImages + imgIndex;
 
-  $("#ajax-content").append('<img class="preloader" src="img/loader.gif">');
+  const imgWidth = $("#img-width").val();
+  const imgHeight = $("#img-height").val();
 
-  var url = "https://picsum.photos/" + imgWidth + "/" + imgHeight + "?image=";
+  // modify query string to load grey images
+  if ($greyScaleInput.prop("checked")) {
+    queryString += "&grayscale";
+  }
+
+  if ($blurInput.val() > 0) {
+    queryString += "&blur=" + $blurInput.val();
+  }
+
+  let url = "https://picsum.photos/" + imgWidth + "/" + imgHeight + "?image=";
 
   // loop and append images
   while (imgIndex < imgOffset) {
-    var img = "";
+    let img = "";
     img +=
-      '<a class="post-link" href="' + url + imgIndex + '" target="_blank">';
-    img += '<img class="post-img" src="' + url + imgIndex + '"/>';
+      '<a class="post-link" href="' +
+      url +
+      imgIndex +
+      queryString +
+      '" target="_blank">';
+    img += '<img class="post-img" src="' + url + imgIndex + queryString + '"/>';
     img += "</a>";
 
-    $("#ajax-content").append(img);
+    $unsplashImages.append(img);
     imgIndex++;
   }
 
   // if img src is not found, sorry console errors :(
   $("img").on("error", function() {
-    $(this).css("display", "none");
+    console.log("the image does not seem to exist");
+    $(this)
+      .parent()
+      .css("display", "none");
   });
 
-  // remove loader gif
-  $(".preloader").remove();
+  setTimeout(function() {
+    $preloadImg.css({
+      display: "none"
+    });
+  }, 500);
 }
