@@ -1,47 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Unsplash Images</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Unsplash Images</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
+  <body>
+    <div class="site">
+      <header>
+        <h1>Unsplash Images</h1>
+        <nav class="controls">
+          <span>
+            <label for="img-index">image index</label>
+            <input id="img-index" value="350" type="number" min="0" max="700" />
+            <label for="img-width">width</label>
+            <input id="img-width" type="number" value="300" />
+            <label for="img-height">height</label>
+            <input id="img-height" type="number" value="300" />
+          </span>
+          <span>
+            <label for="num-images">number of images</label>
+            <input id="num-images" type="number" value="8" min="1" max="80" />
+            <button id="ajax-btn" class="ajax-btn">Load Images</button>
+          </span>
+        </nav>
+      </header>
 
-<body>
+      <main>
+        <div id="ajax-content" class="ajax-content"></div>
+      </main>
+    </div>
 
-  <div class="site">
-    <header>
-      <h1>Unsplash Images</h1>
-      <nav class="controls">
-        <span>
-          <label for="img-index">image index</label>
-          <input id="img-index" value="350" type="number" min="0" max="700">
-          <label for="img-width">width</label>
-          <input id="img-width" type="number" value="300">
-          <label for="img-height">height</label>
-          <input id="img-height" type="number" value="300">
-        </span>
-        <span>
-          <label for="num-images">number of images</label>
-          <input id="num-images" type="number" value="8" min="1" max="80">
-          <button id="ajax-btn" class="ajax-btn">Load Images</button>
-        </span>
-      </nav>
-    </header>
-
-    <main>
-      <div id="ajax-content" class="ajax-content"></div>
-    </main>
-
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.min.js"></script>
-  <script src="js/ajax.js"></script>
-
-</body>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.1/velocity.min.js"></script>
+    <script src="js/ajax.js"></script>
+  </body>
 </html>
